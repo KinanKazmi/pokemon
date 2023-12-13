@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -7,6 +7,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { PokemonType, usePokemonQuery } from '../apis/api';
 import Loading from '../components/Loading';
 import ErrorView from '../components/Error';
+import { localSet } from '../storage/localStore';
 
 
 const Main = ({
@@ -14,6 +15,10 @@ const Main = ({
 }: NativeStackScreenProps<RootStackParamList>) => {
 
   const { data, error, isLoading } = usePokemonQuery(1);
+
+  useEffect(() => {
+    if (data?.results) localSet('pokemons', data.results);
+  }, [data]);
 
   if (!data || isLoading) {
     return <Loading isLoading={!data || isLoading}/>;
