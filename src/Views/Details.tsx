@@ -14,6 +14,11 @@ export const Details = ({
   const { url } = route?.params?.pokemon;
   const urlPath = url.split('/').filter(Boolean).pop();
   const { data, error, isLoading } = usePokemonDetailsQuery(urlPath);
+  // const error = null; const isLoading = false;
+  // const data = {name: 'abc', types: [{
+  //   type: [{name: 'abc'}, {name: 'xyz'}]
+  // }]};
+
 
   if (!data || isLoading) {
     return <Loading isLoading={!data || isLoading}/>;
