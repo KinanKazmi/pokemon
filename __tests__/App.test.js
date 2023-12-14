@@ -1,8 +1,14 @@
+// import 'react-native-gesture-handler';
 import React from 'react';
 import { render } from '@testing-library/react-native';
 import { NativeModules } from 'react-native';
 import App from '../src/App';
 
+NativeModules.UIManager = {
+  RCTView: () => ({
+    directEventTypes: {},
+  }),
+};
 NativeModules.RNGestureHandlerModule = {
   attachGestureHandler: jest.fn(),
   createGestureHandler: jest.fn(),
@@ -17,11 +23,6 @@ NativeModules.PlatformConstants = {
   forceTouchAvailable: false,
 };
 
-NativeModules.UIManager = {
-  RCTView: () => ({
-    directEventTypes: {},
-  }),
-};
 
 test('renders App component', () => {
   const { getByText } = render(<App />);

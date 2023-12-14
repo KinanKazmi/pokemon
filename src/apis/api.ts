@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import {REACT_APP_API_URL_BASE } from '@env';
 
 export interface PokemonType {
   name: string,
@@ -13,7 +14,7 @@ export interface PokemonDetailsType {
 }
 
 export const api = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://pokeapi.co/api/v2/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: REACT_APP_API_URL_BASE || 'https://pokeapi.co/api/v2' }),
   endpoints: (builder) => ({
     pokemon: builder.query({
       query: () => 'pokemon'

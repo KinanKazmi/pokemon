@@ -36,7 +36,6 @@ npm run ios
 ### Project details
 
 1. Since the styling wasn't mentioned in the task document, I've kept the styling to a minimum.
-2. The task mentioned "...the start script should be configurable to start the application against the specified BASE API URLs."
-That can be done by using the dot. env and adding the url path to the package.json start script (and allowed in info.plist for ios) but that doesn't make sense in the case of a react-native mobile application, since you're shipping an application with fixed url paths.
-So I've just mentioned how it can be done.
-3. Theres no input in the app, so keeping the tests to a minimum as well.
+2. As mentioned in the package.json, start:stag and start:prod scripts withh pickup relevant env variables from .env.prod and .env.stag (default) files and use them. Its being used in api.ts file.
+3. keeping .env files in the repo as well so you can use it (not added in gitIgnore)
+4. Theres no input in the app, so keeping the tests to a minimum as well.

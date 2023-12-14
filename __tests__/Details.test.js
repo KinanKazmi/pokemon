@@ -38,8 +38,6 @@ describe('Details', () => {
     //   error: null,
     // });
 
-
-    // Check that loading state is not displayed
     // expect(screen.queryByText('Loading...')).toBeNull();
 
   });
