@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
-import { Text, StyleSheet } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootStackParamList } from '../nav/NavigationStack';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { PokemonType, useFetchPokemonDataQuery } from '../apis/api';
 import Loading from '../components/Loading';
 import ErrorView from '../components/Error';
 import { localSet } from '../storage/localStore';
+import { PokemonType, useFetchPokemonDataQuery } from '../apis/api';
 
 
 const Main = ({

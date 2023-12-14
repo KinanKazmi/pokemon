@@ -1,44 +1,44 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 import { render } from '@testing-library/react-native';
 import { Provider } from 'react-redux';
 import { Details } from '../src/Views/Details';
-import { store } from './setupTests';
-import {usePokemonDetailsQuery} from '../src/apis/api';
+import { store } from '../setupTests';
+import { useFetchPokemonDetailsQuery } from '../src/apis/api';
 
+const mockData = {
+  name: 'name',
+  height: 'height',
+  weight: 'weight',
+  types: [{ type: { name: 'type name' } }],
+};
 
-const hookMocked = jest.fn();
-jest.doMock('../src/apis/api', () => ({
+const mockResponse = {
+  data: mockData,
+  isLoading: false,
+  isSuccess: true,
+  isError: false,
+  error: null,
+};
+
+jest.mock('../src/apis/api', () => ({
   __esModule: true,
-  usePokemonDetailsQuery: () => hookMocked()
+  useFetchPokemonDetailsQuery: jest.fn(() => (mockResponse)),
 }));
 
 describe('Details', () => {
+  beforeEach(() => {
+    useFetchPokemonDetailsQuery.mockClear();
+  });
   it('should render data after API request', async () => {
+    useFetchPokemonDetailsQuery.mockReturnValueOnce(mockResponse);
     const route = { params: { pokemon: { url: 'https://pokeapi.co/api/v2/pokemon/1/'} } };
     const component = (
       <Provider store={store}>
         <Details route={route}/>
       </Provider>
     );
-    const { getByText } = render(component);
-    const element = getByText('Name:');
+    const { getByTestId } = render(component);
+    const element = getByTestId('loaded details');
     expect(element).toBeTruthy();
-
-    // const mockData = {
-    //   name: 'name',
-    //   height: 'height',
-    //   weight: 'weight',
-    // };
-    // usePokemonDetailsQuery.mockReturnValueOnce({
-    //   data: mockData,
-    //   isLoading: false,
-    //   isSuccess: true,
-    //   isError: false,
-    //   error: null,
-    // });
-
-    // expect(screen.queryByText('Loading...')).toBeNull();
-
   });
 });

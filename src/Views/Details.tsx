@@ -1,11 +1,11 @@
 import React from 'react'
 import { SafeAreaView } from 'react-native'
-import { useFetchPokemonDetailsQuery } from '../apis/api';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../nav/NavigationStack';
 import Loading from '../components/Loading';
 import SectionValue from '../components/SectionValue';
 import ErrorView from '../components/Error';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../nav/NavigationStack';
+import { useFetchPokemonDetailsQuery } from '../apis/api';
 
 
 export const Details = ({
@@ -14,11 +14,6 @@ export const Details = ({
   const { url } = route?.params?.pokemon;
   const urlPath = url.split('/').filter(Boolean).pop();
   const { data, error, isLoading } = useFetchPokemonDetailsQuery(urlPath);
-  // const error = null; const isLoading = false;
-  // const data = {name: 'abc', types: [{
-  //   type: [{name: 'abc'}, {name: 'xyz'}]
-  // }]};
-
 
   if (!data || isLoading) {
     return <Loading isLoading={!data || isLoading}/>;
@@ -29,7 +24,7 @@ export const Details = ({
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView testID={'loaded details'}>
       <SectionValue section={'Name'} value={data.name}/>
       <SectionValue section={'Height'} value={data.height}/>
       <SectionValue section={'Weight'} value={data.weight}/>
