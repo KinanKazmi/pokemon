@@ -38,6 +38,8 @@ npm run ios
 2. As mentioned in the package.json, start:stag and start:prod scripts will pickup relevant env variables from .env.prod and .env.stag (default) files and use them. Its being used in api.ts file.
 3. Keeping .env files in the repo as well so you can use it (not added in gitIgnore)
 4. Theres no input in the app, so keeping the tests to a minimum as well (excluding typescript, to keep it clean).
+Currently I have written 2 tests for the Main and Details views. The tests mock the best case scenario, after the RTK query hook's positive response. 
+Further tests can be written by changing the mock data responses of the hook queries for both views. e.g. before loading, error in response, while waiting for response and etc.
 5. use npm test
 ```bash
 # For all files within the __test__ folder
