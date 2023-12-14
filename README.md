@@ -36,7 +36,7 @@ npm run ios
 
 1. Since the styling wasn't mentioned in the task document, I've kept the styling to a minimum.
 2. As mentioned in the package.json, start:stag and start:prod scripts will pickup relevant env variables from .env.prod and .env.stag (default) files and use them. Its being used in api.ts file.
-3. keeping .env files in the repo as well so you can use it (not added in gitIgnore)
+3. Keeping .env files in the repo as well so you can use it (not added in gitIgnore)
 4. Theres no input in the app, so keeping the tests to a minimum as well (excluding typescript, to keep it clean).
 5. use npm test
 ```bash
@@ -47,3 +47,4 @@ npm test
 npm test Main.test
 npm test Details.test
 ```
+6. For persistent storage, I used react-native-mmkv library which has encription support as well. It wasn't clear how the data was to be stored and used locally so I just added it to Main.tsx file in the useEffect for now. Its being hosted and exported from the file localstore.ts.
