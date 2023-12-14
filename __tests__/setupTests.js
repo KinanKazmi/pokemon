@@ -6,11 +6,25 @@ const mockStore = configureStore([]);
 
 const initialState = {
   api: {
-    pokemonDetails: {
-      name: 'Bulbasaur',
-      height: 7,
-      weight: 69,
-      types: [{ type: { name: 'grass' } }, { type: { name: 'poison' } }],
+    queries: {},
+    mutations: {},
+    provided: {},
+    subscriptions: {},
+    config: {
+      online: true,
+      focused: true,
+      middlewareRegistered: true,
+      refetchOnFocus: false,
+      refetchOnReconnect: false,
+      refetchOnMountOrArgChange: false,
+      keepUnusedDataFor: 60,
+      reducerPath: 'api',
+      pokemonDetails: {
+        name: 'Bulbasaur',
+        height: 7,
+        weight: 69,
+        types: [{ type: { name: 'grass' } }, { type: { name: 'poison' } }],
+      },
     },
     status: 'succeeded',
     error: null,

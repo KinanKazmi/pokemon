@@ -1,13 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import {REACT_APP_API_URL_BASE } from '@env';
+
+const baseUrl = REACT_APP_API_URL_BASE || 'https://pokeapi.co/api/v2';
 
 export const fetchPokemonData = createAsyncThunk('pokemon/pokemon', async () => {
-  const response = await fetch('https://pokeapi.co/api/v2/pokemon');
+  const response = await fetch(`${baseUrl}/pokemon`);
   const data = await response.json();
   return data.results;
 });
 
 export const fetchPokemonDetails = createAsyncThunk('pokemon/pokemonDetails', async (id) => {
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+  const response = await fetch(`${baseUrl}/pokemon/${id}`);
   const data = await response.json();
   return data;
 });
@@ -19,6 +22,22 @@ const apiSlice = createSlice({
     pokemonDetails: null,
     status: 'idle',
     error: null,
+    api: {
+      queries: {},
+      mutations: {},
+      provided: {},
+      subscriptions: {},
+      config: {
+        online: true,
+        focused: true,
+        middlewareRegistered: true,
+        refetchOnFocus: false,
+        refetchOnReconnect: false,
+        refetchOnMountOrArgChange: false,
+        keepUnusedDataFor: 60,
+        reducerPath: 'api',
+      },
+    },
   },
   reducers: {},
   extraReducers: (builder) => {

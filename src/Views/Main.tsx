@@ -4,7 +4,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootStackParamList } from '../nav/NavigationStack';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { PokemonType, usePokemonQuery } from '../apis/api';
+import { PokemonType, useFetchPokemonDataQuery } from '../apis/api';
 import Loading from '../components/Loading';
 import ErrorView from '../components/Error';
 import { localSet } from '../storage/localStore';
@@ -14,7 +14,7 @@ const Main = ({
   navigation,
 }: NativeStackScreenProps<RootStackParamList>) => {
 
-  const { data, error, isLoading } = usePokemonQuery(1);
+  const { data, error, isLoading } = useFetchPokemonDataQuery(1);
 
   useEffect(() => {
     if (data?.results) localSet('pokemons', data.results);

@@ -1,6 +1,6 @@
 import React from 'react'
 import { SafeAreaView } from 'react-native'
-import { usePokemonDetailsQuery } from '../apis/api';
+import { useFetchPokemonDetailsQuery } from '../apis/api';
 import Loading from '../components/Loading';
 import SectionValue from '../components/SectionValue';
 import ErrorView from '../components/Error';
@@ -13,7 +13,7 @@ export const Details = ({
 }: NativeStackScreenProps<RootStackParamList, 'Details'>) => {
   const { url } = route?.params?.pokemon;
   const urlPath = url.split('/').filter(Boolean).pop();
-  const { data, error, isLoading } = usePokemonDetailsQuery(urlPath);
+  const { data, error, isLoading } = useFetchPokemonDetailsQuery(urlPath);
   // const error = null; const isLoading = false;
   // const data = {name: 'abc', types: [{
   //   type: [{name: 'abc'}, {name: 'xyz'}]
